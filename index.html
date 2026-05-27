@@ -870,6 +870,7 @@ function renderTrends() {
     if (!exByDate[l.date]) exByDate[l.date] = 0;
     exByDate[l.date] += l.calories||0;
   });
+  const calData = days.map(d => byDate[d] ? Math.round(byDate[d].cal) : null);
   const exData = days.map(d => exByDate[d] ? Math.round(exByDate[d]) : null);
   const netData = days.map((d,i) => {
     const intake = calData[i] || 0;
