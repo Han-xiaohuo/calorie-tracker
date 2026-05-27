@@ -1,0 +1,7 @@
+package.json
+package-lock.json
+server.js
+.git
+.gitignore
+data/
+node_modules/
