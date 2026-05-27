@@ -1,0 +1,12 @@
+{
+  "name": "calorie-tracker",
+  "version": "1.0.0",
+  "description": "热量记录站 - 个人营养热量追踪应用",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
