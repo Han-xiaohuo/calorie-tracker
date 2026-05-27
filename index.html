@@ -1476,6 +1476,7 @@ function markLocalTimestamps() {
 }
 
 async function syncPush() {
+  saveSyncConfigSilent();
   if (!isSyncConfigured()) {
     updateSyncStatus('请先配置服务器地址和密钥', false);
     return;
@@ -1503,6 +1504,7 @@ async function syncPush() {
 }
 
 async function syncPull() {
+  saveSyncConfigSilent();
   if (!isSyncConfigured()) {
     updateSyncStatus('请先配置服务器地址和密钥', false);
     return;
@@ -1528,7 +1530,7 @@ async function syncPull() {
   }
 }
 
-function saveSyncConfig() {
+function  saveSyncConfigSilent() {
   const cfg = {
     serverUrl: document.getElementById('syncServerUrl').value.trim(),
     dataKey: document.getElementById('syncKey').value.trim(),
@@ -1536,8 +1538,12 @@ function saveSyncConfig() {
     lastSync: getSyncConfig().lastSync || 0
   };
   setSyncConfig(cfg);
+}
+
+function saveSyncConfig() {
+  saveSyncConfigSilent();
   updateSyncStatus('配置已保存', true);
-  if (cfg.enabled && cfg.serverUrl && cfg.dataKey) {
+  if (getSyncConfig().enabled && isSyncConfigured()) {
     syncPull(); // Pull on config save
   }
 }
